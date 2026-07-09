@@ -218,7 +218,7 @@ export default async function BlogPostPage({ params }: Props) {
 
             <div className="flex flex-wrap gap-4 pt-1 justify-center sm:justify-start select-none">
               <a
-                href={`https://wa.me/447700900077?text=Hello%20Dears,%20I'd%20like%20to%20inquire%20about%20ordering%2520${relatedProduct.name}`}
+                href={`https://wa.me/19174100236?text=Hello%20Dears,%20I'd%20like%20to%20inquire%20about%20ordering%2520${relatedProduct.name}`}
                 target="_blank"
                 className="flex items-center gap-2 bg-[#25D366] text-white hover:bg-[#1EBE5A] text-xs font-bold uppercase py-3.5 px-6 rounded-xl shadow cursor-pointer text-center"
               >

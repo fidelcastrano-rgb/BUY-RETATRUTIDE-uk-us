@@ -20,7 +20,7 @@ import HomeSeoContent from '@/components/HomeSeoContent';
 import HomeFaqAccordion from '@/components/HomeFaqAccordion';
 
 export const metadata: Metadata = {
-  title: 'Buy Retatrutide Online | 99% Pure Research Peptides UK & US',
+  title: 'Buy Retatrutide Online | 99% Pure Research Peptides US & UK',
   description: 'Sourcing 99%+ HPLC-verified Retatrutide, Tirzepatide, and Semaglutide lyophilized compounds. Strictly formulated and nitrogen-sealed for controlled laboratory assays.',
   alternates: {
     canonical: '/',
@@ -31,7 +31,7 @@ export default function HomePage() {
   const heroBadges = [
     { text: '99.42% Verified Purity', desc: 'Batch HPLC Checked' },
     { text: 'Safe Cold-Chain Log', desc: 'Secure Insulation' },
-    { text: 'Next-Day UK Dispatch', desc: 'US Re-shipper Active' },
+    { text: 'Next-Day US Dispatch', desc: 'UK Re-shipper Active' },
     { text: 'Discrete Packaging', desc: 'No Chemical Labels' },
   ];
 
@@ -81,7 +81,7 @@ export default function HomePage() {
     },
     {
       title: 'Physical Secure Vaulting',
-      desc: 'Materials are preserved under cryogenic conditions in our high-security Leeds depot and New Jersey re-shipping terminal to guarantee consistency and potency.',
+      desc: 'Materials are preserved under cryogenic conditions in our high-security New Jersey depot and Leeds re-shipping terminal to guarantee consistency and potency.',
       size: 'md:col-span-2 bg-[#EEF2F7]/50',
       icon: ShieldCheck,
     },
@@ -112,7 +112,7 @@ export default function HomePage() {
             </div>
 
             <h1 className="font-heading font-extrabold text-white text-4xl sm:text-5xl lg:text-6xl tracking-tight leading-none mb-0">
-              UK & US Trusted <br />
+              US & UK Trusted <br />
               <span className="text-[#3B82F6]">Research Peptides</span> <br />
               Wholesale Depot.
             </h1>

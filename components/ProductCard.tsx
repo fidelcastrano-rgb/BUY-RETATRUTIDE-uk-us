@@ -117,7 +117,7 @@ export default function ProductCard({ product }: ProductCardProps) {
               >
                 <span className="font-semibold tracking-wide block truncate">{v.label}</span>
                 <span className="font-mono mt-1 text-[11px] block text-[#0F172A] font-bold">
-                  £{v.price}
+                  ${v.price}
                 </span>
                 
                 {/* Savings element inside variant buttons */}
@@ -141,13 +141,13 @@ export default function ProductCard({ product }: ProductCardProps) {
             <div className="flex items-baseline gap-2 mt-1.5">
               <span className="text-xs text-[#475569] font-normal leading-none lowercase">from</span>
               <span className="text-2xl font-bold font-heading text-[#0F172A] leading-none">
-                £{currentPrice}
+                ${currentPrice}
               </span>
               
               {/* Optional strikethrough price */}
               {originalPrice && (
                 <span className="text-xs text-zinc-400 line-through leading-none font-mono">
-                  £{originalPrice}
+                  ${originalPrice}
                 </span>
               )}
             </div>

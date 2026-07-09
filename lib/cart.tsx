@@ -85,22 +85,22 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
 
   // Compile summary of order and format text
   const compileOrderMessage = () => {
-    let msg = `🧪 *NEW PEPTIDE INQUIRY - BUY RETATRUTIDE UK & US*\n`;
+    let msg = `🧪 *NEW PEPTIDE INQUIRY - BUY RETATRUTIDE US & UK*\n`;
     msg += `----------------------------------------------\n`;
     items.forEach((item) => {
-      msg += `• ${item.name} (${item.variant}) x${item.qty} - £${item.price * item.qty}\n`;
+      msg += `• ${item.name} (${item.variant}) x${item.qty} - $${item.price * item.qty}\n`;
     });
     msg += `----------------------------------------------\n`;
-    msg += `*Total Appr. Price:* £${totalPrice}\n\n`;
-    msg += `*Preferred Dispatch:* UK/US Mainland Next Day\n`;
+    msg += `*Total Appr. Price:* $${totalPrice}\n\n`;
+    msg += `*Preferred Dispatch:* US/UK Mainland Next Day\n`;
     msg += `Please confirm shipping details and payment instructions (Bank Transfer / Bitcoin / USDT).`;
     return msg;
   };
 
   const sendWhatsApp = () => {
     const formattedText = encodeURIComponent(compileOrderMessage());
-    // UK primary contact
-    const phone = '447700900077';
+    // US primary contact
+    const phone = '19174100236';
     window.open(`https://wa.me/${phone}?text=${formattedText}`, '_blank');
   };
 

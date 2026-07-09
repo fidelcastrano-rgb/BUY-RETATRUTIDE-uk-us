@@ -46,21 +46,21 @@ export default function ProductDetailClient({ product, relatedProducts }: Produc
   };
 
   const handleDirectWhatsApp = () => {
-    let msg = `🧪 *NEW DIRECT INQUIRY - BUY RETATRUTIDE UK & US*\n`;
+    let msg = `🧪 *NEW DIRECT INQUIRY - BUY RETATRUTIDE US & UK*\n`;
     msg += `----------------------------------------------\n`;
     msg += `• Product: ${product.name}\n`;
     msg += `• Formulation: ${selectedVariant.label}\n`;
-    msg += `• Reference Price: £${currentPrice}\n`;
+    msg += `• Reference Price: $${currentPrice}\n`;
     msg += `----------------------------------------------\n`;
     msg += `Please send bank payment and rapid transit logistics coordinates.`;
-    window.open(`https://wa.me/447700900077?text=${encodeURIComponent(msg)}`, '_blank');
+    window.open(`https://wa.me/19174100236?text=${encodeURIComponent(msg)}`, '_blank');
   };
 
   const handleDirectEmail = () => {
     const subject = `Inquiry: ${product.name} [${selectedVariant.label}]`;
     let msg = `Product: ${product.name}\n`;
     msg += `Formulation: ${selectedVariant.label}\n`;
-    msg += `Reference Price: £${currentPrice}\n\n`;
+    msg += `Reference Price: $${currentPrice}\n\n`;
     msg += `Please provide bulk invoice, purity logs, and secure payment coordinates.`;
     window.location.href = `mailto:sales@buyretat.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(msg)}`;
   };
@@ -141,12 +141,12 @@ export default function ProductDetailClient({ product, relatedProducts }: Produc
             <div className="flex items-baseline gap-2">
               <span className="text-xs text-[#475569] lowercase font-normal">from</span>
               <span className="text-3xl font-bold font-heading text-[#0F172A] leading-none">
-                £{currentPrice}
+                ${currentPrice}
               </span>
               
               {originalPrice && (
                 <span className="text-xs text-zinc-400 line-through leading-none font-mono">
-                  £{originalPrice}
+                  ${originalPrice}
                 </span>
               )}
             </div>
@@ -170,7 +170,7 @@ export default function ProductDetailClient({ product, relatedProducts }: Produc
                 >
                   <span className="font-bold tracking-wide text-base">{v.label}</span>
                   <span className="font-mono mt-1 text-sm font-bold text-[#0F172A]">
-                    £{v.price}.00
+                    ${v.price}.00
                   </span>
                   
                   {v.savings && (

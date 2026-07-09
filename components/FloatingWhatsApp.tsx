@@ -6,8 +6,8 @@ import { MessageSquareText } from 'lucide-react';
 export default function FloatingWhatsApp() {
   const handleWA = () => {
     // Standard chemical supplier WhatsApp text
-    const text = encodeURIComponent("Hello! I'm researching Retatrutide/Tirzepatide and would like to inquire about bulk kits, purity verification certificates, and prompt dispatch options for the UK and US.");
-    window.open(`https://wa.me/447700900077?text=${text}`, '_blank');
+    const text = encodeURIComponent("Hello! I'm researching Retatrutide/Tirzepatide and would like to inquire about bulk kits, purity verification certificates, and prompt dispatch options for the US and UK.");
+    window.open(`https://wa.me/19174100236?text=${text}`, '_blank');
   };
 
   return (

@@ -50,7 +50,7 @@ export default function OrderBuilder() {
                   RE-INFORCED ORDER BUILDER
                 </span>
                 <span className="text-[10px] text-zinc-400 font-mono">
-                  {totalItemsCount} {totalItemsCount === 1 ? 'item' : 'vials'} added • Total: £{totalPrice}
+                  {totalItemsCount} {totalItemsCount === 1 ? 'item' : 'vials'} added • Total: ${totalPrice}
                 </span>
               </div>
             </div>
@@ -93,7 +93,7 @@ export default function OrderBuilder() {
                       <div className="flex flex-col">
                         <span className="text-sm font-semibold tracking-wide text-zinc-100">{item.name}</span>
                         <span className="text-[11px] text-zinc-400 font-mono">Variant: {item.variant}</span>
-                        <span className="text-[11px] text-white/90 font-mono mt-0.5">£{item.price} per vial / kit</span>
+                        <span className="text-[11px] text-white/90 font-mono mt-0.5">${item.price} per vial / kit</span>
                       </div>
                       
                       <div className="flex items-center gap-4">
@@ -133,17 +133,34 @@ export default function OrderBuilder() {
                 <div className="bg-slate-900 border-t border-white/5 p-5 space-y-4">
                   <div className="flex justify-between text-xs font-mono text-zinc-400 font-semibold">
                     <span>ESTIMATED TOTAL EXPENSES:</span>
-                    <span className="text-white text-sm font-bold text-[#FF6B1A]">£{totalPrice}.00</span>
+                    <span className="text-white text-sm font-bold text-[#FF6B1A]">${totalPrice}.00</span>
                   </div>
                   
                   {/* Primary Secured One-Page Checkout */}
-                  <Link
-                    href="/checkout"
-                    className="flex items-center justify-center gap-2 bg-[#FF6B1A] text-white hover:bg-[#2563EB] text-xs font-bold uppercase tracking-wider py-4 px-4 rounded-xl shadow cursor-pointer transition-all active:scale-[0.98] w-full text-center font-heading"
-                  >
-                    <Lock className="w-4 h-4 text-white" />
-                    <span>Proceed to Secure Checkout</span>
-                  </Link>
+                  {totalPrice < 100 ? (
+                    <div className="space-y-2">
+                      <div className="bg-red-500/10 border border-red-500/25 rounded-xl p-3 text-xs text-red-400 font-mono text-center">
+                        ⚠️ MINIMUM ORDER AMOUNT IS $100.00
+                        <br />
+                        Please add ${(100 - totalPrice).toFixed(2)} more to proceed.
+                      </div>
+                      <button
+                        disabled
+                        className="flex items-center justify-center gap-2 bg-zinc-800 text-zinc-500 text-xs font-bold uppercase tracking-wider py-4 px-4 rounded-xl w-full text-center font-heading cursor-not-allowed opacity-50"
+                      >
+                        <Lock className="w-4 h-4 text-zinc-550" />
+                        <span>Proceed to Secure Checkout</span>
+                      </button>
+                    </div>
+                  ) : (
+                    <Link
+                      href="/checkout"
+                      className="flex items-center justify-center gap-2 bg-[#FF6B1A] text-white hover:bg-[#2563EB] text-xs font-bold uppercase tracking-wider py-4 px-4 rounded-xl shadow cursor-pointer transition-all active:scale-[0.98] w-full text-center font-heading"
+                    >
+                      <Lock className="w-4 h-4 text-white" />
+                      <span>Proceed to Secure Checkout</span>
+                    </Link>
+                  )}
 
                   <div className="relative flex py-1 items-center">
                     <div className="flex-grow border-t border-white/5"></div>

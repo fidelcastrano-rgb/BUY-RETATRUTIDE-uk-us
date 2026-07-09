@@ -31,7 +31,7 @@ export default function CheckoutForm() {
     lastName: '',
     email: '',
     phone: '',
-    country: 'United Kingdom',
+    country: 'United States',
     state: '',
     city: '',
     streetAddress: '',
@@ -110,6 +110,13 @@ export default function CheckoutForm() {
 
     setErrorMessage(null);
 
+    // Minimum order check
+    if (totalPrice < 100) {
+      setErrorMessage('Minimum order sub-total must be at least $100.00 to place an order.');
+      window.scrollTo({ top: 100, behavior: 'smooth' });
+      return;
+    }
+
     // Validate
     if (!validateForm()) {
       const firstError = Object.values(formErrors)[0] || 'Please fill in all required fields.';
@@ -187,8 +194,8 @@ export default function CheckoutForm() {
     );
   }
 
-  // Cart is empty case
-  if (items.length === 0 && !submitting) {
+  // Cart is empty or below minimum case
+  if ((items.length === 0 || totalPrice < 100) && !submitting) {
     return (
       <div className="min-h-screen bg-[#F8FAFC] flex flex-col justify-center items-center py-24 px-4 text-center">
         <div className="bg-[#0F172A] p-5 rounded-2xl shadow-xl border border-[#CBD5E1]/50 max-w-md w-full space-y-6">
@@ -196,11 +203,17 @@ export default function CheckoutForm() {
             <ShoppingBag className="w-8 h-8" />
           </div>
           <div className="space-y-2">
-            <h2 className="font-heading font-extrabold text-2xl text-white">YOUR CART IS EMPTY</h2>
-            <p className="text-xs font-mono text-zinc-400 uppercase tracking-widest">No active compounds staged</p>
+            <h2 className="font-heading font-extrabold text-2xl text-white uppercase">
+              {items.length === 0 ? 'YOUR CART IS EMPTY' : 'MINIMUM ORDER NOT MET'}
+            </h2>
+            <p className="text-xs font-mono text-zinc-400 uppercase tracking-widest">
+              {items.length === 0 ? 'No active compounds staged' : 'Minimum order amount is $100.00'}
+            </p>
           </div>
           <p className="text-sm text-zinc-300 leading-relaxed">
-            You must add lyophilized research compounds to your Order Builder drawer before proceeding to our secure checkout terminal.
+            {items.length === 0 
+              ? 'You must add lyophilized research compounds to your Order Builder drawer before proceeding to our secure checkout terminal.'
+              : `Your current order sub-total is $${totalPrice.toFixed(2)}. The minimum required amount for research orders is $100.00.`}
           </p>
           <div className="pt-2">
             <Link
@@ -341,7 +354,7 @@ export default function CheckoutForm() {
                     className={`w-full p-3 border rounded-xl text-sm transition-all focus:outline-none focus:ring-2 focus:ring-[#2563EB]/20 ${
                       formErrors.phone ? 'border-red-500 bg-red-50/10 focus:border-red-500' : 'border-[#CBD5E1] focus:border-[#2563EB]'
                     }`}
-                    placeholder="e.g. +44 7700 900077"
+                    placeholder="e.g. +1 (917) 410-0236"
                   />
                   {formErrors.phone && <p className="text-[11px] text-red-500 font-mono font-medium">{formErrors.phone}</p>}
                 </div>
@@ -366,8 +379,8 @@ export default function CheckoutForm() {
                   onChange={handleInputChange}
                   className="w-full p-3 border border-[#CBD5E1] rounded-xl text-sm transition-all focus:outline-none focus:ring-2 focus:ring-[#2563EB]/20 bg-white"
                 >
-                  <option value="United Kingdom">United Kingdom (UK)</option>
                   <option value="United States">United States (US)</option>
+                  <option value="United Kingdom">United Kingdom (UK)</option>
                   <option value="Canada">Canada</option>
                   <option value="Australia">Australia</option>
                   <option value="Germany">Germany</option>
@@ -487,7 +500,7 @@ export default function CheckoutForm() {
                       <span className="text-xs font-mono text-[#FF6B1A] font-semibold mt-1 block">Fulfillment time: 24 Hours (Tracked & Signed)</span>
                     </div>
                   </div>
-                  <span className="font-heading font-bold text-base text-[#0F172A]">£65.00</span>
+                  <span className="font-heading font-bold text-base text-[#0F172A]">$65.00</span>
                 </div>
 
                 {/* Option B: Normal Shipping */}
@@ -512,7 +525,7 @@ export default function CheckoutForm() {
                       <span className="text-xs font-mono text-[#475569] mt-1 block">Fulfillment time: 3–5 Days</span>
                     </div>
                   </div>
-                  <span className="font-heading font-bold text-base text-[#0F172A]">£20.00</span>
+                  <span className="font-heading font-bold text-base text-[#0F172A]">$20.00</span>
                 </div>
 
                 {/* Option C: International Shipping */}
@@ -537,7 +550,7 @@ export default function CheckoutForm() {
                       <span className="text-xs font-mono text-[#475569] mt-1 block">Dispatched via premium global air freight</span>
                     </div>
                   </div>
-                  <span className="font-heading font-bold text-base text-[#0F172A]">£50.00</span>
+                  <span className="font-heading font-bold text-base text-[#0F172A]">$50.00</span>
                 </div>
 
               </div>
@@ -611,11 +624,11 @@ export default function CheckoutForm() {
                     <div>
                       <span className="font-heading font-bold text-sm text-zinc-100 block leading-tight">{item.name}</span>
                       <span className="text-[10px] text-zinc-400 font-mono mt-0.5 block">Variant: {item.variant}</span>
-                      <span className="text-[10px] text-zinc-400 font-mono block">Unit price: £{item.price.toFixed(2)}</span>
+                      <span className="text-[10px] text-zinc-400 font-mono block">Unit price: ${item.price.toFixed(2)}</span>
                     </div>
                     <div className="text-right shrink-0">
                       <span className="text-xs font-mono text-zinc-400 block">x{item.qty}</span>
-                      <span className="font-mono text-sm font-bold text-zinc-200 block mt-1">£{(item.price * item.qty).toFixed(2)}</span>
+                      <span className="font-mono text-sm font-bold text-zinc-200 block mt-1">${(item.price * item.qty).toFixed(2)}</span>
                     </div>
                   </div>
                 ))}
@@ -626,12 +639,12 @@ export default function CheckoutForm() {
                 
                 <div className="flex justify-between items-center text-xs font-mono text-zinc-400">
                   <span>PRODUCTS SUB-TOTAL</span>
-                  <span className="text-zinc-200 font-bold">£{totalPrice.toFixed(2)}</span>
+                  <span className="text-zinc-200 font-bold">${totalPrice.toFixed(2)}</span>
                 </div>
 
                 <div className="flex justify-between items-center text-xs font-mono text-zinc-400">
                   <span>DISPATCH COST</span>
-                  <span className="text-zinc-200 font-bold">£{currentShippingCost.toFixed(2)}</span>
+                  <span className="text-zinc-200 font-bold">${currentShippingCost.toFixed(2)}</span>
                 </div>
 
                 <div className="flex justify-between items-center text-xs font-mono text-zinc-400">
@@ -648,10 +661,10 @@ export default function CheckoutForm() {
                 <div className="border-t border-white/5 pt-4 flex justify-between items-end">
                   <div className="flex flex-col">
                     <span className="text-[9px] font-mono text-zinc-400 uppercase tracking-widest leading-none">Estimated Total</span>
-                    <span className="text-[10px] font-mono text-[#FF6B1A] uppercase tracking-wider mt-1 font-bold leading-none">UK/US INCL. COLD CHAIN</span>
+                    <span className="text-[10px] font-mono text-[#FF6B1A] uppercase tracking-wider mt-1 font-bold leading-none">US/UK INCL. COLD CHAIN</span>
                   </div>
                   <span className="font-heading font-black text-2xl sm:text-3xl text-white leading-none">
-                    £{grandTotal.toFixed(2)}
+                    ${grandTotal.toFixed(2)}
                   </span>
                 </div>
 

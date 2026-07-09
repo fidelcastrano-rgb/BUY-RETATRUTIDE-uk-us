@@ -18,7 +18,7 @@ export default function ProductsClient() {
   const trustItems = [
     { title: 'Independent HPLC Audited', desc: '99%+ minimum purity guaranteed per batch', icon: ShieldCheck },
     { title: 'Sub-Zero Cryo Storage', desc: 'Maintained at strict sub-zero environments', icon: RefreshCw },
-    { title: 'Free domestic dispatch', desc: 'Over UK mainland on multiple kit volumes', icon: Truck },
+    { title: 'Free domestic dispatch', desc: 'Over US mainland on multiple kit volumes', icon: Truck },
     { title: 'Discreet Billing Details', desc: 'Zero pharmaceutical labeling on packing', icon: Coins },
   ];
 

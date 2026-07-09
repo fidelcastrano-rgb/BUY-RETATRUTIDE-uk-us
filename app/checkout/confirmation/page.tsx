@@ -122,10 +122,10 @@ function ConfirmationDetails() {
           <div className="flex justify-between items-center py-4">
             <div className="space-y-1">
               <span className="text-xs font-mono font-bold uppercase text-[#475569] block leading-none">GRAND TOTAL</span>
-              <span className="text-[10px] text-zinc-400 font-mono">STAGED IN GBP (£)</span>
+              <span className="text-[10px] text-zinc-400 font-mono">STAGED IN USD ($)</span>
             </div>
             <span className="font-heading font-black text-3xl sm:text-4xl text-[#FF6B1A]">
-              £{parseFloat(orderTotal).toFixed(2)}
+              ${parseFloat(orderTotal).toFixed(2)}
             </span>
           </div>
 
