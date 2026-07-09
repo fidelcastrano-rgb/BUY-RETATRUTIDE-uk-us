@@ -2,11 +2,13 @@
 
 import { useState } from 'react';
 import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 import { motion, AnimatePresence } from 'motion/react';
 import { ShoppingBag, ChevronUp, ChevronDown, Trash2, Send, Mail, X, CheckSquare, Lock } from 'lucide-react';
 import { useCart } from '@/lib/cart';
 
 export default function OrderBuilder() {
+  const pathname = usePathname();
   const {
     items,
     totalPrice,
@@ -20,7 +22,7 @@ export default function OrderBuilder() {
 
   const [expanded, setExpanded] = useState(true);
 
-  if (!isMounted || items.length === 0) return null;
+  if (!isMounted || items.length === 0 || pathname.startsWith('/checkout')) return null;
 
   const totalItemsCount = items.reduce((sum, item) => sum + item.qty, 0);
 

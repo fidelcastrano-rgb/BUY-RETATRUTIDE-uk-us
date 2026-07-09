@@ -3,8 +3,6 @@
 import React, { Suspense } from 'react';
 import { useSearchParams } from 'next/navigation';
 import Link from 'next/link';
-import Header from '@/components/Header';
-import Footer from '@/components/Footer';
 import { 
   CheckCircle2, 
   Copy, 
@@ -171,19 +169,15 @@ function ConfirmationDetails() {
 
 export default function ConfirmationPage() {
   return (
-    <>
-      <Header />
-      <main className="min-h-screen bg-[#F8FAFC]">
-        <Suspense fallback={
-          <div className="min-h-screen flex flex-col justify-center items-center py-20 px-4">
-            <Loader2 className="w-10 h-10 text-[#FF6B1A] animate-spin mb-4" />
-            <p className="text-sm font-mono text-[#475569] uppercase tracking-wider">Retrieving Order Receipt...</p>
-          </div>
-        }>
-          <ConfirmationDetails />
-        </Suspense>
-      </main>
-      <Footer />
-    </>
+    <main className="min-h-screen bg-[#F8FAFC]">
+      <Suspense fallback={
+        <div className="min-h-screen flex flex-col justify-center items-center py-20 px-4">
+          <Loader2 className="w-10 h-10 text-[#FF6B1A] animate-spin mb-4" />
+          <p className="text-sm font-mono text-[#475569] uppercase tracking-wider">Retrieving Order Receipt...</p>
+        </div>
+      }>
+        <ConfirmationDetails />
+      </Suspense>
+    </main>
   );
 }
