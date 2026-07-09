@@ -1,8 +1,15 @@
-'use client';
-
 import React from 'react';
+import { Metadata } from 'next';
 import Link from 'next/link';
 import { ChevronRight, FileText, Lock, Globe } from 'lucide-react';
+
+export const metadata: Metadata = {
+  title: 'Terms & Conditions of Sourcing & Usage Agreement | Buy Retatrutide',
+  description: 'Understand the legal conditions regarding our peptide products. All crystalline compounds and reagents sold are strictly designated for in-vitro scientific assays and research only.',
+  alternates: {
+    canonical: '/terms',
+  }
+};
 
 export default function TermsPage() {
   const currentYear = 2026;

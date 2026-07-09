@@ -1,8 +1,15 @@
-'use client';
-
 import React from 'react';
+import { Metadata } from 'next';
 import Link from 'next/link';
 import { ChevronRight, ShieldAlert, Lock, Fingerprint } from 'lucide-react';
+
+export const metadata: Metadata = {
+  title: 'Confidentiality Protocols & Data Security Policy | Buy Retatrutide',
+  description: 'Review our confidential data routing policies, non-commercial database safeguards, transaction ledgers, and zero-tracking cookie frameworks built to protect research programs.',
+  alternates: {
+    canonical: '/privacy',
+  }
+};
 
 export default function PrivacyPage() {
   const currentYear = 2026;

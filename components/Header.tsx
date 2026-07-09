@@ -24,9 +24,9 @@ export default function Header() {
   const totalItemsCount = items.reduce((sum, item) => sum + item.qty, 0);
 
   return (
-    <header className="w-full z-50">
+    <>
       {/* 1. Notice / Announcement Bar Marquee */}
-      <div className="w-full bg-[#0F172A] text-white py-2.5 overflow-hidden border-b border-white/10 text-xs font-mono tracking-wider">
+      <div className="w-full bg-[#0F172A] text-white py-2.5 overflow-hidden border-b border-white/10 text-xs font-mono tracking-wider relative z-50">
         <div className="flex whitespace-nowrap overflow-hidden">
           <div className="animate-marquee inline-flex gap-12 text-zinc-300">
             <span>🧪 *JUNE 2026 HPLC INDEPENDENT LAB ANALYSIS ACTIVE: 99.42% RETATRUTIDE IN STOCK*</span>
@@ -47,7 +47,7 @@ export default function Header() {
       </div>
 
       {/* 2. Glassmorphism Sticky Nav */}
-      <nav className="sticky top-0 w-full glass-nav z-40 transition-all duration-300">
+      <header className="sticky top-0 w-full glass-nav z-50 transition-all duration-300">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center h-20">
             {/* Logo */}
@@ -167,7 +167,7 @@ export default function Header() {
             </motion.div>
           )}
         </AnimatePresence>
-      </nav>
-    </header>
+      </header>
+    </>
   );
 }

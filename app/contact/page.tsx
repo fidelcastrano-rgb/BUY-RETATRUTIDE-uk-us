@@ -1,6 +1,5 @@
-'use client';
-
 import React from 'react';
+import { Metadata } from 'next';
 import Link from 'next/link';
 import {
   MessageSquare,
@@ -15,6 +14,14 @@ import {
   ClipboardList,
   ChevronRight
 } from 'lucide-react';
+
+export const metadata: Metadata = {
+  title: 'Contact Sourcing & Support Representative | Buy Retatrutide',
+  description: 'Reach our accounts and B2B procurement desk directly via WhatsApp or secure e-mail. Request HPLC certificates, get custom wholesale quotes, or arrange continuous deliveries.',
+  alternates: {
+    canonical: '/contact',
+  }
+};
 
 export default function ContactPage() {
   const steps = [

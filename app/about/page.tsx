@@ -1,6 +1,5 @@
-'use client';
-
 import React from 'react';
+import { Metadata } from 'next';
 import {
   ShieldCheck,
   ShieldAlert,
@@ -18,6 +17,14 @@ import {
   Milestone
 } from 'lucide-react';
 import Link from 'next/link';
+
+export const metadata: Metadata = {
+  title: 'About Our Biochemical Sourcing & Purity Standards | Buy Retatrutide',
+  description: 'Learn about our rigorous ISO 9001 quality controls, Fmoc solid-phase synthesis protocols, 99.42% HPLC chromatography verifications, and warning signs of online peptide scams.',
+  alternates: {
+    canonical: '/about',
+  }
+};
 
 export default function AboutPage() {
   const stats = [
