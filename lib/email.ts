@@ -131,15 +131,22 @@ export async function sendOrderEmails(details: EmailOrderDetails): Promise<{ cus
       </div>
     `;
 
-    await resend.emails.send({
+    const response = await resend.emails.send({
       from: fromEmail,
       to: details.customerEmail,
       subject: `Order Confirmation #${details.orderNumber} - Buy Retatrutide`,
       html: customerHtmlContent,
     });
-    result.customerSent = true;
+
+    if (response.error) {
+      console.error('[Resend Email Error - Customer Confirmation]:', response.error);
+      console.warn('[Resend Email Tip]: If you are using onboarding@resend.dev, Resend restricts delivery ONLY to your registered account email. To send to any external customer, you must verify your custom domain in the Resend dashboard and set the RESEND_FROM_EMAIL variable.');
+    } else {
+      console.log('[Resend Email Success - Customer Confirmation]:', response.data);
+      result.customerSent = true;
+    }
   } catch (err) {
-    console.error('[Resend Email] Error sending customer confirmation email:', err);
+    console.error('[Resend Email] Unexpected error sending customer confirmation email:', err);
   }
 
   // 2. Send Admin Email
@@ -215,15 +222,21 @@ export async function sendOrderEmails(details: EmailOrderDetails): Promise<{ cus
       </div>
     `;
 
-    await resend.emails.send({
+    const adminResponse = await resend.emails.send({
       from: fromEmail,
       to: adminEmail,
       subject: `🚨 New Order #${details.orderNumber} - Action Required (${details.paymentMethod})`,
       html: adminHtmlContent,
     });
-    result.adminSent = true;
+
+    if (adminResponse.error) {
+      console.error('[Resend Email Error - Admin Notification]:', adminResponse.error);
+    } else {
+      console.log('[Resend Email Success - Admin Notification]:', adminResponse.data);
+      result.adminSent = true;
+    }
   } catch (err) {
-    console.error('[Resend Email] Error sending admin notification email:', err);
+    console.error('[Resend Email] Unexpected error sending admin notification email:', err);
   }
 
   return result;
