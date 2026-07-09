@@ -188,7 +188,7 @@ export default function CheckoutForm() {
   }
 
   // Cart is empty case
-  if (items.length === 0) {
+  if (items.length === 0 && !submitting) {
     return (
       <div className="min-h-screen bg-[#F8FAFC] flex flex-col justify-center items-center py-24 px-4 text-center">
         <div className="bg-[#0F172A] p-5 rounded-2xl shadow-xl border border-[#CBD5E1]/50 max-w-md w-full space-y-6">

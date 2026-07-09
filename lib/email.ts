@@ -27,8 +27,8 @@ export interface EmailOrderDetails {
 
 export async function sendOrderEmails(details: EmailOrderDetails): Promise<{ customerSent: boolean; adminSent: boolean }> {
   const apiKey = process.env.RESEND_API_KEY;
-  const fromEmail = process.env.RESEND_FROM_EMAIL || 'onboarding@resend.dev';
-  const adminEmail = process.env.ADMIN_EMAIL || 'yamahaoutboardss@gmail.com';
+  const fromEmail = process.env.RESEND_FROM_EMAIL || 'Buy Retatrutide <orders@buyretat.com>';
+  const adminEmail = process.env.ADMIN_EMAIL || 'sales@buyretat.com';
 
   const result = { customerSent: false, adminSent: false };
 
